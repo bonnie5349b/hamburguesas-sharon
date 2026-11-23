@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Letrero QR Oficial - Hamburguesas Sharon</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@400;600;800;900&display=swap">
+  <style>
+    body { font-family: 'Outfit', sans-serif; }
+    .font-bebas { font-family: 'Bebas Neue', sans-serif; }
+    @media print {
+      .no-print { display: none !important; }
+      body { background: white !important; padding: 0 !important; }
+      .print-card { box-shadow: none !important; border: 2px solid #000 !important; }
+    }
+  </style>
+</head>
+<body class="bg-gray-900 min-h-screen flex flex-col items-center justify-center p-4">
+
+  <!-- Botones de Acción (Ocultos al imprimir) -->
+  <div class="no-print mb-6 flex flex-wrap gap-3">
+    <button onclick="window.print()" class="px-6 py-3 bg-amber-500 hover:bg-amber-400 text-black font-extrabold text-sm rounded-xl shadow-lg flex items-center gap-2 transition-transform active:scale-95">
+      🖨️ Imprimir Letrero (Ctrl + P)
+    </button>
+    <a href="qr-menu.png" download="QR-Hamburguesas-Sharon.png" class="px-6 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-sm rounded-xl shadow-lg flex items-center gap-2 transition-transform active:scale-95">
+      ⬇️ Descargar solo la Imagen QR
+    </a>
+    <a href="index.html" class="px-6 py-3 bg-gray-800 hover:bg-gray-700 text-gray-200 font-bold text-sm rounded-xl border border-gray-700 flex items-center gap-2">
+      ← Volver a la Página Web
+    </a>
+  </div>
+
+  <!-- TARJETA / LETRERO PARA IMPRIMIR -->
+  <div class="print-card bg-white text-gray-950 w-full max-w-md rounded-3xl p-8 border-4 border-amber-500 shadow-2xl flex flex-col items-center text-center relative overflow-hidden">
+    
+    <!-- Banda superior -->
+    <div class="w-full bg-amber-500 text-black py-2 px-4 rounded-xl font-black text-xs uppercase tracking-widest mb-4">
+      ★ MENÚ DIGITAL & PEDIDOS ★
+    </div>
+
+    <!-- Título / Logo -->
+    <h1 class="font-bebas text-5xl tracking-wider text-black leading-none mb-1">
+      HAMBURGUESAS SHARON
+    </h1>
+    <p class="text-xs font-bold text-gray-600 tracking-wider uppercase mb-6">
+      Res • Pollo • Arrachera • Hot-Dogs • Alitas • Combos
+    </p>
+
+    <!-- Marco del Código QR -->
+    <div class="p-4 bg-gray-50 border-2 border-dashed border-gray-400 rounded-3xl shadow-inner mb-6 flex flex-col items-center">
+      <img src="qr-menu.png" alt="Código QR del Menú Hamburguesas Sharon" class="w-64 h-64 object-contain">
+      <p class="mt-2 text-xs font-black text-gray-800 uppercase tracking-wide">
+        ESCANEA CON LA CÁMARA DE TU CELULAR
+      </p>
+    </div>
+
+    <!-- Mensaje de Servicio -->
+    <div class="w-full bg-gray-100 rounded-2xl p-4 border border-gray-200 mb-6 space-y-1.5">
+      <p class="text-sm font-black text-gray-900">
+        🛵 SERVICIO A DOMICILIO GRATIS
+      </p>
+      <p class="text-xs font-bold text-amber-700">
+        🛍️ SERVICIO PICKUP (ORDENA Y RECOGE)
+      </p>
+      <p class="text-[11px] text-gray-600">
+        ¡Consulta promociones, combos y pide directo por WhatsApp!
+      </p>
+    </div>
+
+    <!-- Teléfonos -->
+    <div class="w-full border-t-2 border-gray-200 pt-4 space-y-1">
+      <div class="flex items-center justify-center gap-2 text-emerald-700 font-black text-base">
+        <span>💬 WhatsApp:</span>
+        <span class="text-xl font-bebas tracking-wide">772 736 5672</span>
+      </div>
+      <div class="flex items-center justify-center gap-3 text-xs text-gray-700 font-bold">
+        <span>📞 738 145 78 10</span>
+        <span>•</span>
+        <span>📞 738 145 76 11</span>
+      </div>
+    </div>
+
+  </div>
+
+  <p class="no-print mt-6 text-xs text-gray-500 text-center max-w-sm">
+    💡 Consejo: Puedes imprimir varios de estos letreros para colocarlos en las mesas de tu puesto o pegarlos como volantes.
+  </p>
+
+</body>
+</html>

@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hamburguesas Sharon | Menú Oficial, Combos y Pedidos a Domicilio</title>
+  <meta name="description" content="Pide las mejores hamburguesas, hot dogs, sincronizadas y combos en Hamburguesas Sharon. Servicio a domicilio GRATIS y servicio pickup. WhatsApp: 772 736 5672.">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              amber: '#f59e0b',
+              orange: '#ea580c',
+              dark: '#0f1115',
+              card: '#181b22',
+              border: '#282e3c',
+              green: '#25d366'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-[#0f1115] text-gray-100 min-h-screen flex flex-col antialiased selection:bg-amber-500 selection:text-black">
+
+  <!-- Top Announcement Bar -->
+  <div class="bg-gradient-to-r from-amber-600 via-orange-600 to-amber-600 text-white text-xs md:text-sm font-semibold py-2 px-4 text-center tracking-wide flex items-center justify-center gap-3">
+    <span class="inline-flex items-center gap-1.5"><i data-lucide="bike" class="w-4 h-4"></i> ¡SERVICIO A DOMICILIO GRATIS!</span>
+    <span class="hidden sm:inline opacity-75">|</span>
+    <span class="hidden sm:inline-flex items-center gap-1.5"><i data-lucide="shopping-bag" class="w-4 h-4"></i> SERVICIO PICKUP</span>
+    <span class="hidden md:inline opacity-75">|</span>
+    <a href="https://wa.me/527727365672" target="_blank" class="underline hover:text-amber-200 transition-colors inline-flex items-center gap-1">
+      <i data-lucide="message-circle" class="w-3.5 h-3.5"></i> WhatsApp: 772 736 5672
+    </a>
+  </div>
+
+  <!-- Header / Navbar -->
+  <header class="sticky top-0 z-40 bg-[#12141a]/95 backdrop-blur-md border-b border-gray-800/80 shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-black font-extrabold shadow-md group-hover:scale-105 transition-transform">
+          <i data-lucide="flame" class="w-7 h-7 text-white fill-white"></i>
+        </div>
+        <div>
+          <h1 class="font-bebas text-2xl sm:text-3xl tracking-wider leading-none text-white group-hover:text-amber-400 transition-colors">
+            HAMBURGUESAS SHARON
+          </h1>
+          <p class="text-[11px] sm:text-xs text-amber-500/90 font-medium tracking-wide">
+            ALITAS • HOT-DOGS • COMBOS
+          </p>
+        </div>
+      </a>
+
+      <!-- Quick Nav Links (Desktop) -->
+      <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-gray-300">
+        <a href="#menu-section" class="hover:text-amber-400 transition-colors">Menú</a>
+        <a href="#promos" class="hover:text-amber-400 transition-colors">Combos</a>
+        <a href="#info" class="hover:text-amber-400 transition-colors">Teléfonos y Pedidos</a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        
+        <!-- QR Code Button -->
+        <button onclick="openQRModal()" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-gray-800/90 hover:bg-gray-700 border border-gray-700 text-xs sm:text-sm text-amber-400 transition-all font-semibold" title="Ver e imprimir Código QR del menú">
+          <i data-lucide="qr-code" class="w-4 h-4"></i>
+          <span class="hidden sm:inline">Código QR</span>
+        </button>
+
+        <!-- Call Button -->
+        <a href="tel:7381457810" class="hidden md:inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-gray-800/80 hover:bg-gray-700 border border-gray-700 text-xs text-gray-200 transition-all font-medium">
+          <i data-lucide="phone-call" class="w-4 h-4 text-amber-400"></i>
+          <span>738 145 78 10</span>
+        </a>
+
+        <!-- Cart Button -->
+        <button id="open-cart-btn" class="relative flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-black font-bold text-sm shadow-md hover:brightness-110 active:scale-95 transition-all">
+          <i data-lucide="shopping-cart" class="w-5 h-5"></i>
+          <span class="hidden sm:inline">Mi Pedido</span>
+          <span id="cart-count-badge" class="min-w-[20px] h-5 px-1.5 rounded-full bg-black text-amber-400 text-xs flex items-center justify-center font-black">
+            0
+          </span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative hero-gradient pt-10 pb-16 md:pt-14 md:pb-20 border-b border-gray-800/60 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        
+        <!-- Left Column: Copy & CTAs -->
+        <div class="lg:col-span-7 space-y-5 text-center lg:text-left">
+          
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-semibold uppercase tracking-wider">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+            Menú 100% Oficial de Hamburguesas Sharon
+          </div>
+
+          <h2 class="font-bebas text-4xl sm:text-6xl md:text-7xl text-white tracking-wide leading-none">
+            HAMBURGUESAS <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500">SHARON</span>
+          </h2>
+
+          <p class="text-gray-300 text-sm sm:text-base max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+            Todas nuestras hamburguesas incluyen: <strong class="text-amber-400 font-semibold">Jamón, tocino, salchicha, queso oaxaca, queso amarillo, jitomate, chile, piña, mayonesa, cátsup y mostaza</strong>.
+          </p>
+
+          <!-- Badges Grid -->
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-1 max-w-lg mx-auto lg:mx-0 text-left">
+            <div class="flex items-center gap-2.5 p-2.5 rounded-xl bg-gray-900/60 border border-gray-800">
+              <div class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center shrink-0">
+                <i data-lucide="bike" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="text-xs font-bold text-white">Envío Gratis</p>
+                <p class="text-[11px] text-gray-400">A tu domicilio</p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2.5 p-2.5 rounded-xl bg-gray-900/60 border border-gray-800">
+              <div class="w-8 h-8 rounded-lg bg-orange-500/20 text-orange-400 flex items-center justify-center shrink-0">
+                <i data-lucide="package-check" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="text-xs font-bold text-white">Servicio Pickup</p>
+                <p class="text-[11px] text-gray-400">Ordena y recoge</p>
+              </div>
+            </div>
+
+            <div class="col-span-2 sm:col-span-1 flex items-center gap-2.5 p-2.5 rounded-xl bg-gray-900/60 border border-gray-800">
+              <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+                <i data-lucide="message-circle" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="text-xs font-bold text-white">WhatsApp</p>
+                <p class="text-[11px] text-gray-400">772 736 5672</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- CTA Buttons -->
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-3">
+            <a href="#menu-section" class="px-5 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-black font-extrabold text-sm shadow-lg glow-btn hover:scale-105 active:scale-95 transition-all flex items-center gap-2">
+              <i data-lucide="utensils" class="w-4 h-4"></i>
+              Ver Menú
+            </a>
+            
+            <a href="https://wa.me/527727365672?text=Hola%20Hamburguesas%20Sharon,%20quisiera%20hacer%20un%20pedido" target="_blank" class="px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-lg glow-wa hover:scale-105 active:scale-95 transition-all flex items-center gap-2">
+              <i data-lucide="message-circle" class="w-4 h-4"></i>
+              Pedir por WhatsApp
+            </a>
+
+            <!-- Open QR Modal button -->
+            <button onclick="openQRModal()" class="px-4 py-3 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 font-bold text-sm border border-gray-700 flex items-center gap-2 transition-all">
+              <i data-lucide="qr-code" class="w-4 h-4 text-amber-400"></i>
+              Ver QR para Mesas
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Visual Showcase -->
+        <div class="lg:col-span-5 relative flex justify-center">
+          <div class="relative w-full max-w-md">
+            <div class="absolute -inset-4 bg-gradient-to-r from-amber-500/20 to-orange-500/20 rounded-full blur-2xl"></div>
+            
+            <div class="relative bg-gradient-to-b from-[#1a1d24] to-[#121419] p-4 sm:p-5 rounded-3xl border border-gray-700/80 shadow-2xl">
+              <div class="relative rounded-2xl overflow-hidden aspect-[4/3] group">
+                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80" alt="Hamburguesa Sharon Especial" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                <div class="absolute top-3 left-3 bg-red-600 text-white text-xs font-black uppercase px-3 py-1 rounded-full shadow-lg">
+                  🔥 Menú Oficial
+                </div>
+                <div class="absolute bottom-3 right-3 bg-black/85 backdrop-blur-md text-amber-400 font-bebas text-2xl px-3 py-1 rounded-xl border border-amber-500/40">
+                  Res Normal $50 | Gde $60
+                </div>
+              </div>
+
+              <div class="mt-4 p-3 rounded-xl bg-gray-900/80 border border-gray-800 flex items-center justify-between text-xs">
+                <span class="text-gray-300 flex items-center gap-1.5">
+                  <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i> Con jamón, tocino, salchicha y quesos
+                </span>
+                <span class="text-amber-400 font-bold">100% Casero</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Combos Section -->
+  <section id="promos" class="py-12 bg-[#0c0d11] border-b border-gray-800/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-start md:items-end justify-between mb-8 gap-4">
+        <div>
+          <div class="inline-flex items-center gap-1.5 text-xs uppercase tracking-wider text-amber-500 font-bold mb-1">
+            <i data-lucide="sparkles" class="w-4 h-4"></i> Paquetes Oficiales
+          </div>
+          <h3 class="font-bebas text-3xl sm:text-4xl text-white tracking-wide">
+            COMBOS HAMBURGUESAS SHARON
+          </h3>
+          <p class="text-gray-400 text-sm">Servicio a domicilio gratis • Servicio pickup</p>
+        </div>
+        <a href="#menu-section" class="text-amber-400 hover:text-amber-300 text-sm font-semibold inline-flex items-center gap-1.5 group">
+          Ver todo el menú <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+
+      <!-- Quick Combos Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="featured-combos-container">
+        <!-- Injected via app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Menu Section -->
+  <section id="menu-section" class="py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-1">
+    
+    <!-- Title & Search Bar -->
+    <div class="text-center max-w-3xl mx-auto mb-8 space-y-2">
+      <h2 class="font-bebas text-4xl sm:text-5xl tracking-wide text-white">
+        MENÚ COMPLETO
+      </h2>
+      <p class="text-gray-400 text-xs sm:text-sm">
+        Exclusivamente los platillos del menú oficial: Hamburguesas, Hot-Dog, Sincronizadas, Alitas, Papas y Refrescos.
+      </p>
+
+      <!-- Search Input -->
+      <div class="relative max-w-md mx-auto pt-3">
+        <i data-lucide="search" class="w-5 h-5 text-gray-400 absolute left-4 top-[23px]"></i>
+        <input 
+          type="text" 
+          id="search-input" 
+          placeholder="Buscar platillo..." 
+          class="w-full bg-[#181b22] border border-gray-700/80 rounded-2xl pl-12 pr-10 py-3 text-sm text-gray-200 placeholder-gray-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all shadow-inner"
+        >
+        <button id="clear-search-btn" class="hidden absolute right-3.5 top-[23px] text-gray-400 hover:text-white">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Category Filter Tabs -->
+    <div class="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto pb-4 mb-8 scrollbar-none" id="categories-tabs">
+      <!-- Injected via JavaScript -->
+    </div>
+
+    <!-- Items Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="menu-grid">
+      <!-- Items dynamically injected here -->
+    </div>
+
+    <!-- Empty State -->
+    <div id="no-results" class="hidden text-center py-16">
+      <div class="w-16 h-16 rounded-full bg-gray-800/80 text-gray-500 flex items-center justify-center mx-auto mb-4">
+        <i data-lucide="utensils" class="w-8 h-8"></i>
+      </div>
+      <h4 class="text-lg font-bold text-gray-300">No encontramos ningún platillo</h4>
+      <p class="text-sm text-gray-500 mt-1">Busca por "res", "pollo", "arrachera", "hot-dog", "alitas", "papas" o "combo".</p>
+      <button onclick="resetFilters()" class="mt-4 px-4 py-2 bg-amber-500 text-black font-semibold text-xs rounded-xl hover:bg-amber-400 transition-colors">
+        Ver todo el menú
+      </button>
+    </div>
+
+  </section>
+
+  <!-- Ingredients Legend Banner -->
+  <section class="bg-gradient-to-r from-[#181b22] via-[#21252f] to-[#181b22] border-y border-gray-800 py-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center space-y-3">
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 text-xs font-bold uppercase tracking-wider">
+        <i data-lucide="info" class="w-3.5 h-3.5"></i> Ingredientes de nuestras hamburguesas, sincronizadas y hot-dogs:
+      </span>
+      <div class="flex flex-wrap justify-center items-center gap-2 max-w-4xl mx-auto">
+        <span class="px-3 py-1 rounded-lg bg-gray-900 border border-gray-700 text-xs text-gray-200">Jamón</span>
+        <span class="px-3 py-1 rounded-lg bg-gray-900 border border-gray-700 text-xs text-gray-200">Tocino</span>
+        <span class="px-3 py-1 rounded-lg bg-gray-900 border border-gray-700 text-xs text-gray-200">Salchicha</span>
+        <span class="px-3 py-1 rounded-lg bg-gray-900 border border-gray-700 text-xs text-gray-200">Queso Oaxaca</span>
+        <span class="px-3 py-1 rounded-lg bg-gray-900 border border-gray-700 text-xs text-gray-200">Queso Amarillo</span>
+        <span class="px-3 py-1 rounded-lg bg-gray-900 border border-gray-700 text-xs text-gray-200">Jitomate</span>
+        <span class="px-3 py-1 rounded-lg bg-gray-900 border border-gray-700 text-xs text-gray-200">Chile</span>
+        <span class="px-3 py-1 rounded-lg bg-gray-900 border border-gray-700 text-xs text-gray-200">Piña</span>
+        <span class="px-3 py-1 rounded-lg bg-gray-900 border border-gray-700 text-xs text-gray-200">Mayonesa, Cátsup y Mostaza</span>
+      </div>
+      <p class="text-xs text-gray-400 italic">
+        * Al ordenar puedes quitar cualquier ingrediente que desees (ejemplo: sin piña o sin chile).
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact, Info & Phones Section -->
+  <section id="info" class="py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      
+      <!-- Card 1: WhatsApp -->
+      <div class="p-6 rounded-3xl bg-[#181b22] border border-gray-800 flex flex-col justify-between hover:border-emerald-500/40 transition-colors">
+        <div class="space-y-3">
+          <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+            <i data-lucide="message-circle" class="w-6 h-6"></i>
+          </div>
+          <h4 class="text-xl font-bold text-white">Pedidos por WhatsApp</h4>
+          <p class="text-xs text-gray-400">Envía tu orden para servicio a domicilio o servicio pickup.</p>
+          <div class="text-2xl font-black text-emerald-400 font-bebas tracking-wider">
+            772 736 5672
+          </div>
+        </div>
+        <a href="https://wa.me/527727365672?text=Hola%20Hamburguesas%20Sharon,%20quisiera%20hacer%20un%20pedido" target="_blank" class="mt-6 w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm text-center flex items-center justify-center gap-2 transition-colors">
+          <i data-lucide="send" class="w-4 h-4"></i> Enviar Mensaje
+        </a>
+      </div>
+
+      <!-- Card 2: Phone calls -->
+      <div class="p-6 rounded-3xl bg-[#181b22] border border-gray-800 flex flex-col justify-between hover:border-amber-500/40 transition-colors">
+        <div class="space-y-3">
+          <div class="w-12 h-12 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center">
+            <i data-lucide="phone-call" class="w-6 h-6"></i>
+          </div>
+          <h4 class="text-xl font-bold text-white">Llamadas Telefónicas</h4>
+          <p class="text-xs text-gray-400">Teléfonos de atención para ordenar y resolver dudas:</p>
+          <div class="space-y-1">
+            <a href="tel:7381457810" class="block text-xl font-black text-amber-400 font-bebas hover:underline">
+              738 145 78 10
+            </a>
+            <a href="tel:7381457611" class="block text-xl font-black text-amber-400 font-bebas hover:underline">
+              738 145 76 11
+            </a>
+          </div>
+        </div>
+        <div class="mt-6 flex gap-2">
+          <a href="tel:7381457810" class="flex-1 py-2.5 rounded-xl bg-gray-800 hover:bg-gray-700 text-white font-bold text-xs text-center transition-colors">
+            Llamar Línea 1
+          </a>
+          <a href="tel:7381457611" class="flex-1 py-2.5 rounded-xl bg-gray-800 hover:bg-gray-700 text-white font-bold text-xs text-center transition-colors">
+            Llamar Línea 2
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 3: QR Code & Print -->
+      <div class="p-6 rounded-3xl bg-[#181b22] border border-gray-800 flex flex-col justify-between hover:border-amber-500/40 transition-colors">
+        <div class="space-y-3">
+          <div class="w-12 h-12 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center">
+            <i data-lucide="qr-code" class="w-6 h-6"></i>
+          </div>
+          <h4 class="text-xl font-bold text-white">Código QR para Mesas</h4>
+          <p class="text-xs text-gray-400">Genera o imprime el letrero con código QR para colocar en las mesas de tu puesto.</p>
+          <div class="flex items-center gap-2 pt-1 text-xs text-emerald-400 font-bold">
+            <i data-lucide="check-circle" class="w-4 h-4"></i> Listo para imprimir en papel
+          </div>
+        </div>
+        <div class="mt-6 flex flex-col gap-2">
+          <button onclick="openQRModal()" class="w-full py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-black font-extrabold text-xs text-center transition-all flex items-center justify-center gap-1.5 shadow-md">
+            <i data-lucide="qr-code" class="w-4 h-4"></i> Ver Código QR
+          </button>
+          <a href="letrero-qr-puesto.html" target="_blank" class="w-full py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-300 font-bold text-xs text-center transition-colors">
+            🖨️ Abrir Plantilla Imprimible
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-[#0b0c0f] border-t border-gray-800/80 py-8 text-center text-xs text-gray-500 space-y-3">
+    <div class="flex items-center justify-center gap-2">
+      <div class="w-6 h-6 rounded-lg bg-amber-500 text-black flex items-center justify-center font-bold">
+        <i data-lucide="flame" class="w-4 h-4 text-black"></i>
+      </div>
+      <span class="font-bebas text-lg tracking-wider text-gray-300">HAMBURGUESAS SHARON</span>
+    </div>
+    <p>© Hamburguesas Sharon • Servicio a Domicilio Gratis y Servicio Pickup</p>
+  </footer>
+
+  <!-- MODAL: CÓDIGO QR DEL MENÚ -->
+  <div id="qr-modal" class="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+    <div class="modal-content bg-[#181b22] border border-gray-700 rounded-3xl w-full max-w-sm overflow-hidden shadow-2xl flex flex-col text-center p-6 space-y-4">
+      
+      <div class="flex items-center justify-between">
+        <span class="text-xs font-bold uppercase tracking-wider text-amber-500 flex items-center gap-1">
+          <i data-lucide="qr-code" class="w-4 h-4"></i> Código QR Oficial
+        </span>
+        <button onclick="closeQRModal()" class="w-7 h-7 rounded-full bg-gray-800 hover:bg-gray-700 text-gray-400 hover:text-white flex items-center justify-center">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <h3 class="font-bebas text-2xl text-white tracking-wide">
+        HAMBURGUESAS SHARON
+      </h3>
+      <p class="text-xs text-gray-400">
+        Escanea este código con cualquier teléfono celular para abrir el menú digital y realizar pedidos.
+      </p>
+
+      <!-- Imagen QR -->
+      <div class="p-4 bg-white rounded-2xl shadow-inner mx-auto w-56 h-56 flex items-center justify-center">
+        <img src="qr-menu.png" alt="Código QR Menú Hamburguesas Sharon" class="w-full h-full object-contain">
+      </div>
+
+      <!-- Botones de Acción -->
+      <div class="space-y-2 pt-2">
+        <a href="letrero-qr-puesto.html" target="_blank" class="w-full py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-black font-extrabold text-xs flex items-center justify-center gap-2 shadow-md transition-all">
+          <i data-lucide="printer" class="w-4 h-4"></i> Imprimir Letrero para Mesas
+        </a>
+        <a href="qr-menu.png" download="QR-Hamburguesas-Sharon.png" class="w-full py-2.5 rounded-xl bg-gray-800 hover:bg-gray-700 text-white font-bold text-xs flex items-center justify-center gap-2 border border-gray-700 transition-colors">
+          <i data-lucide="download" class="w-4 h-4 text-emerald-400"></i> Descargar Imagen QR (.png)
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CUSTOMIZER MODAL (Personalización de Producto) -->
+  <div id="customize-modal" class="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+    <div class="modal-content bg-[#181b22] border border-gray-700 rounded-3xl w-full max-w-lg overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
+      
+      <!-- Modal Header -->
+      <div class="p-5 border-b border-gray-800 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div id="modal-img-container" class="w-12 h-12 rounded-xl overflow-hidden bg-gray-800 shrink-0">
+            <img id="modal-item-img" src="" alt="Producto" class="w-full h-full object-cover">
+          </div>
+          <div>
+            <h3 id="modal-item-title" class="font-bold text-base sm:text-lg text-white">Nombre del Platillo</h3>
+            <p id="modal-item-base-price" class="text-amber-400 text-xs sm:text-sm font-semibold">$0.00 MXN</p>
+          </div>
+        </div>
+        <button onclick="closeCustomizeModal()" class="w-8 h-8 rounded-full bg-gray-800 hover:bg-gray-700 text-gray-400 hover:text-white flex items-center justify-center transition-colors">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- Modal Body (Scrollable) -->
+      <div class="p-5 overflow-y-auto space-y-5 flex-1 text-sm">
+
+        <!-- Tamaño (solo para Res) -->
+        <div id="modal-size-container" class="hidden space-y-2">
+          <label class="block font-semibold text-gray-200">Elige el tamaño:</label>
+          <div class="grid grid-cols-2 gap-3" id="modal-sizes-radio">
+            <!-- Dynamic Size radios -->
+          </div>
+        </div>
+
+        <!-- Opciones de bebida (si aplica) -->
+        <div id="modal-flavor-container" class="hidden space-y-2">
+          <label class="block font-semibold text-gray-200">Sabor de refresco:</label>
+          <select id="modal-flavor-select" class="w-full bg-gray-900 border border-gray-700 rounded-xl px-3 py-2 text-gray-200 focus:outline-none focus:border-amber-500">
+          </select>
+        </div>
+
+        <!-- Ingredientes a Excluir ("Quitar") -->
+        <div id="modal-ingredients-container" class="hidden space-y-2">
+          <div class="flex items-center justify-between">
+            <label class="font-semibold text-gray-200">¿Deseas quitar algún ingrediente?</label>
+            <span class="text-[11px] text-gray-400">Toca para tachar</span>
+          </div>
+          <p class="text-xs text-gray-400">Haz clic en los ingredientes que NO deseas en tu orden:</p>
+          <div class="flex flex-wrap gap-2 pt-1" id="modal-ingredients-chips">
+            <!-- Chips injected by JS -->
+          </div>
+        </div>
+
+        <!-- Selección de Aderezos (para Alitas y Papas) -->
+        <div id="modal-dressings-container" class="hidden space-y-2">
+          <label class="block font-semibold text-gray-200">Aderezos a elegir:</label>
+          <p class="text-xs text-gray-400">Selecciona los aderezos que deseas incluir:</p>
+          <div class="grid grid-cols-2 gap-2 pt-1" id="modal-dressings-checkboxes">
+            <!-- Dressings injected by JS -->
+          </div>
+        </div>
+
+        <!-- Notas Especiales -->
+        <div class="space-y-1.5">
+          <label class="block font-semibold text-gray-200">Instrucciones especiales (opcional):</label>
+          <textarea 
+            id="modal-notes-input" 
+            rows="2" 
+            placeholder="Ejemplo: Bien doradita la carne, etc." 
+            class="w-full bg-gray-900 border border-gray-700 rounded-xl p-3 text-xs text-gray-200 placeholder-gray-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500"
+          ></textarea>
+        </div>
+
+        <!-- Cantidad -->
+        <div class="flex items-center justify-between p-3 rounded-2xl bg-gray-900/80 border border-gray-800">
+          <span class="font-medium text-gray-300">Cantidad:</span>
+          <div class="flex items-center gap-3">
+            <button onclick="changeModalQty(-1)" class="w-8 h-8 rounded-lg bg-gray-800 hover:bg-gray-700 text-white flex items-center justify-center font-bold active:scale-95 transition-all">
+              -
+            </button>
+            <span id="modal-qty-display" class="font-extrabold text-base w-6 text-center text-amber-400">1</span>
+            <button onclick="changeModalQty(1)" class="w-8 h-8 rounded-lg bg-gray-800 hover:bg-gray-700 text-white flex items-center justify-center font-bold active:scale-95 transition-all">
+              +
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="p-5 border-t border-gray-800 bg-[#14161c] flex items-center justify-between gap-4">
+        <div>
+          <span class="text-xs text-gray-400 block">Total:</span>
+          <span id="modal-total-price" class="text-xl font-black text-amber-400 font-bebas tracking-wide">$0.00 MXN</span>
+        </div>
+        <button id="modal-add-btn" class="px-5 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:brightness-110 active:scale-95 text-black font-extrabold text-sm shadow-md transition-all flex items-center gap-2">
+          <i data-lucide="plus" class="w-4 h-4"></i>
+          Agregar al Pedido
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SHOPPING CART SLIDE-OVER DRAWER -->
+  <div id="cart-drawer-backdrop" class="drawer-backdrop fixed inset-0 z-50 bg-black/70 backdrop-blur-sm">
+    <div id="cart-drawer-panel" class="drawer-panel fixed top-0 right-0 bottom-0 w-full max-w-md bg-[#16181f] border-l border-gray-800 shadow-2xl flex flex-col z-50">
+      
+      <!-- Drawer Header -->
+      <div class="p-5 border-b border-gray-800 flex items-center justify-between bg-[#12141a]">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center">
+            <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-white text-base">Tu Orden</h3>
+            <p id="drawer-items-count" class="text-xs text-gray-400">0 artículos agregados</p>
+          </div>
+        </div>
+        <button id="close-cart-btn" class="w-8 h-8 rounded-full bg-gray-800 hover:bg-gray-700 text-gray-400 hover:text-white flex items-center justify-center transition-colors">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- Drawer Items List -->
+      <div id="cart-items-container" class="flex-1 overflow-y-auto p-5 space-y-4">
+        <!-- Rendered by JS -->
+      </div>
+
+      <!-- Order Form & Checkout Footer -->
+      <div class="border-t border-gray-800 bg-[#12141a] p-5 space-y-4">
+        
+        <!-- Delivery Mode Switcher -->
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 mb-2">Forma de Entrega:</label>
+          <div class="grid grid-cols-2 gap-2 bg-gray-900 p-1 rounded-xl border border-gray-800">
+            <button type="button" id="delivery-tab-home" onclick="setDeliveryMode('home')" class="py-2 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 bg-amber-500 text-black">
+              <i data-lucide="bike" class="w-3.5 h-3.5"></i> A Domicilio (GRATIS)
+            </button>
+            <button type="button" id="delivery-tab-pickup" onclick="setDeliveryMode('pickup')" class="py-2 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 text-gray-400 hover:text-white">
+              <i data-lucide="store" class="w-3.5 h-3.5"></i> Pickup (Recoger)
+            </button>
+          </div>
+        </div>
+
+        <!-- Customer Inputs -->
+        <div class="space-y-2.5 text-xs">
+          <div>
+            <input 
+              type="text" 
+              id="customer-name" 
+              placeholder="Tu Nombre *" 
+              class="w-full bg-gray-900 border border-gray-700/80 rounded-xl px-3 py-2.5 text-white placeholder-gray-500 focus:outline-none focus:border-amber-500"
+            >
+          </div>
+          <div>
+            <input 
+              type="tel" 
+              id="customer-phone" 
+              placeholder="Número de Teléfono *" 
+              class="w-full bg-gray-900 border border-gray-700/80 rounded-xl px-3 py-2.5 text-white placeholder-gray-500 focus:outline-none focus:border-amber-500"
+            >
+          </div>
+          <div id="address-field-container">
+            <input 
+              type="text" 
+              id="customer-address" 
+              placeholder="Dirección y referencias (calle, no., colonia) *" 
+              class="w-full bg-gray-900 border border-gray-700/80 rounded-xl px-3 py-2.5 text-white placeholder-gray-500 focus:outline-none focus:border-amber-500"
+            >
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <select id="payment-method" onchange="toggleCashChangeField()" class="bg-gray-900 border border-gray-700/80 rounded-xl px-2.5 py-2 text-white text-xs focus:outline-none focus:border-amber-500">
+              <option value="Efectivo">Pago: Efectivo</option>
+              <option value="Transferencia">Pago: Transferencia</option>
+            </select>
+            <input 
+              type="text" 
+              id="customer-change" 
+              placeholder="¿Pagas con billete de...?" 
+              class="bg-gray-900 border border-gray-700/80 rounded-xl px-2.5 py-2 text-white placeholder-gray-500 text-xs focus:outline-none focus:border-amber-500"
+            >
+          </div>
+        </div>
+
+        <!-- Total Calculation -->
+        <div class="pt-2 border-t border-gray-800/80 space-y-1">
+          <div class="flex justify-between text-xs text-gray-400">
+            <span>Subtotal:</span>
+            <span id="cart-subtotal" class="text-gray-200 font-semibold">$0.00 MXN</span>
+          </div>
+          <div class="flex justify-between text-xs text-gray-400">
+            <span>Costo de Envío:</span>
+            <span class="text-emerald-400 font-bold">¡GRATIS!</span>
+          </div>
+          <div class="flex justify-between text-base font-extrabold text-white pt-1">
+            <span>TOTAL:</span>
+            <span id="cart-total" class="text-amber-400 text-xl font-bebas tracking-wide">$0.00 MXN</span>
+          </div>
+        </div>
+
+        <!-- WhatsApp Checkout Button -->
+        <button 
+          id="checkout-whatsapp-btn" 
+          onclick="submitOrderToWhatsApp()" 
+          class="w-full py-3.5 rounded-xl bg-gradient-to-r from-emerald-600 to-green-500 hover:brightness-110 active:scale-95 text-white font-extrabold text-sm shadow-lg glow-wa flex items-center justify-center gap-2 transition-all"
+        >
+          <i data-lucide="message-circle" class="w-5 h-5 fill-white"></i>
+          Enviar Pedido por WhatsApp
+        </button>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FLOATING WHATSAPP BUTTON (Mobile & Desktop) -->
+  <a 
+    href="https://wa.me/527727365672?text=Hola%20Hamburguesas%20Sharon,%20quisiera%20hacer%20un%20pedido" 
+    target="_blank" 
+    aria-label="Contactar por WhatsApp"
+    class="fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full bg-[#25d366] text-white flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 glow-wa transition-transform"
+  >
+    <i data-lucide="message-circle" class="w-8 h-8 fill-white"></i>
+  </a>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="menu-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
